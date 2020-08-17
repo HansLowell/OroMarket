@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+{% block style %}
+.form {
+     border: 1px solid #FFF;
+     padding: 12px 20px;
+     display: inline-block;
+}
+.btn {
+    background: green;
+    border: none;
+}
+
+.btn:hover{
+    background: black;
+}
+
+.fgt {
+    color: white;
+}
+
+.fgt:hover {
+    text-decoration: none;
+}
+
+main {
+    text-align: center;
+}
+
+ho {
+
+}
+{% endblock %}
+{% block main %}
+{% if error %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <span>{{ error }}</span>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endif %}
+    <br>
+    <form action="/register" method="post" class="form">
+        <div class="form-group">
+            <ho class="white">Enter Username:&nbsp;&nbsp;</ho>
+            <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="form-group">
+            <ho class="white">Enter Password:&nbsp;&nbsp;</ho>
+            <input class="form-control" name="pwd" placeholder="Password" type="password">
+        </div>
+        <div class="form-group">
+            <ho class="white">Confirm password:&nbsp;</ho>
+            <input class="form-control" name="confirmpwd" placeholder="Password" type="password">
+        </div>
+        <div class="form-group">
+            <ho class="white">Enter email:&nbsp;</ho>
+            <input autocomplete="off" autofocus class="form-control" name="email" placeholder="email" type="text">
+        </div>
+        <br>
+        <button class="btn btn-primary" type="submit">Confirm</button>
+    </form>
+    <br>
+    <ho class="green">{{ message }}</ho>
+{% endblock %}

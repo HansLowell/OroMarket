@@ -1,0 +1,76 @@
+body {
+
+    background: linear-gradient(rgba(85,153,112,.7), rgba(85,153,112,.7)), url("wallpaper.jpg");
+    background-size: cover;
+}
+
+#mainbar {
+    /* background: rgba(154,232,176, 0.65); */
+    background-image: linear-gradient(to right, rgba(154,232,176, 0.65), green);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    height: 50px;
+}
+
+#endbar {
+    background-image: linear-gradient(to right, rgba(154,232,176, 0.65), green);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    height: 50px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.title {
+    font-size: 20px;
+    font-family: 'Yrsa', serif;
+    margin: 0px 25px 0 0;
+}
+
+main .form-control
+{
+    /* center form controls */
+    display: inline-block;
+
+    /* override Bootstrap's 100% width for form controls */
+    width: auto;
+}
+
+main
+{
+    /* scroll horizontally as needed */
+    padding: 50px;
+    overflow-x: auto;
+
+    /* center contents */
+    /*text-align: center;
+}
+
+main img
+{
+    /* constrain images on small screens */
+    max-width: 100%;
+}
+
+.white {
+    color: white;
+}
+
+.red {
+    color: red;
+}
+
+.bold {
+     font-weight: bold;
+}
+
+.green {
+    color:rgba(0,255,0,1);
+    text-shadow: 2px 2px #000000;
+}
+
+.nav-link {
+    color:green;
+    font-weight: bold;
+}

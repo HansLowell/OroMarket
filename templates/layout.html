@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- documentation at http://getbootstrap.com/docs/4.1/, alternative themes at https://bootswatch.com/ -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- https://favicon.io/emoji-favicons/money-mouth-face/ -->
+        <link href="/static/favicon.ico" rel="icon">
+        <link href="https://fonts.googleapis.com/css2?family=Yrsa&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+        <link href="/static/styles.css" rel="stylesheet">
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+        <title>Oro Market</title>
+        <style>
+            {% block style %}
+            {% endblock %}
+        </style>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-md" id="mainbar">
+                <ul class="navbar-nav mr-auto mt-2">
+                        <li class="nav-item"><a class="nav-link title" href="/">Oro Market</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
+                </ul>
+        </nav>
+
+        <main>
+            {% block main %}{% endblock %}
+        </main>
+        <footer class="small text-center white">
+            Data provided by <a href="https://originsro.org/" class="bold white">OriginsRo</a> API
+        </footer>
+        <br>
+        <br>
+        <div id="endbar"></div>
+        <br>
+        <br>
+    </body>
+
+</html>

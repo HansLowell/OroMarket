@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block style %}
+
+{% endblock %}
+
+{% block title %}
+{% endblock %}
+
+
+{% block main %}
+{% for row in data %}
+    <h1>{{row}}</h1>
+{% endfor %}
+{% if message %}
+    <div class="alert alert-success" role="alert">
+        <span>{{ message }}</span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+{% endif %}
+{% endblock %}

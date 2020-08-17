@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block style %}
+#endbar {
+    background-image: linear-gradient(to right, rgba(154,232,176, 0.65), green);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    height: 50px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+main {
+    text-align: center;
+}
+.error {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 26px;
+    color: white;
+}
+
+.imgerror {
+    width: 25%;
+    height: 25%;
+}
+{% endblock %}
+{% block title %}
+    Apology
+{% endblock %}
+
+{% block main %}
+    <img class="imgerror" alt="{{ top }}" class="border" src="../static/alice.png" title="{{ top }}">
+    <br>
+    <ho class="error">Ooops... an error occured</ho>
+{% endblock %}

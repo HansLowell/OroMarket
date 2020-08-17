@@ -1,0 +1,342 @@
+{% extends "layout.html" %}
+
+{% block style %}
+
+.form {
+text-align:center;
+}
+
+.mini {
+    height: 20px;
+    width: 20px;
+}
+
+.form-group {
+     padding: 25px 25px;
+     border: 1px solid;
+     display: inline-block;
+     background: rgba(96,176,128, 0.65)
+}
+
+.btn2{
+    background:rgba(0, 181, 204, 0.25);
+    border: none;
+}
+
+.btn2:hover {
+    background:rgba(0, 255, 255, 0.25);
+}
+
+.btn {
+    background: green;
+    border: none;
+}
+
+.btn:hover{
+    background: black;
+}
+
+.fgt {
+    color: white;
+}
+
+.fgt:hover {
+    text-decoration: none;
+}
+
+main {
+}
+
+label {
+}
+
+.textbox {
+  display: inline-block;
+  float: left;
+  margin-left: 10px;
+  padding: 2px;
+  text-align: center;
+}
+
+.checkbox {
+    float: left;
+    position: relative;
+    top: 8px;
+    right: -5px;
+}
+
+label {
+color: white;
+display: inline-block;
+float: left;
+clear: left;
+width: auto;
+margin-left: 10px;
+}
+
+.tablecustom {
+    border-collapse: collapse;
+    background: rgba(96,176,128, 0.65);
+    width: 100%;
+}
+
+.requestTable {
+    border-collapse: collapse;
+    background: rgba(0, 181, 204, 0.25);
+    width: 100%;
+}
+
+td {
+    border-collapse: collapse;  
+    background: rgba(0,0,0, 0.25);
+    font-size: 10px;
+    width: 25%
+}
+
+th {
+    font-size: 10px;
+    text-align: left;
+}
+
+tr {
+    border: 1px solid;
+    width: 100%;
+}
+
+thead {
+    border-collapse: collapse;
+    border: 1px solid;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+  }
+
+  .red {
+      color: red;
+  }
+
+  .green {
+      color:green;
+  }
+
+  .brown {
+      color:brown;
+  }
+
+  .blue {
+      color:blue;
+  }
+
+  .aqua {
+      color: rgba(0,255,255,1)
+  }
+
+  .card_display {
+  }
+
+.button {
+    width: 35px;
+    height: 35px;
+}
+
+{% endblock %}
+
+{% block title %}
+{% endblock %}
+
+
+{% block main %}
+    <form action="/search" method="post" class="form">
+        <div class="form-group">
+
+            <label>Item :&nbsp;&nbsp;</label>
+            <input class="textbox" autocomplete="off" autofocus class="form-control" name="item" placeholder="item name or ID" type="text">
+            <label>Refine :&nbsp;
+                <input list="refines" name="refine" /></label>
+                <datalist id="refines">
+                <option value=" ">
+                <option value="None">
+                <option value="+ 1">
+                <option value="+ 2">
+                <option value="+ 3">
+                <option value="+ 4">
+                <option value="+ 5">
+                <option value="+ 6">
+                <option value="+ 7">
+                <option value="+ 8">
+                <option value="+ 9">
+                <option value="+ 10">
+                </datalist>
+            <label>&nbsp;</label>
+            <label>Exclude gears containing cards :</label>
+            <input class=" checkbox" type="checkbox" class="form-check-input" id="excludeSlotted" name="excludeSlotted">
+
+        </div>
+        <div class="form-group">
+            <label>Price Range :</label>
+            <label>&nbsp;</label>
+            <input class="textbox" autocomplete="off" autofocus class="form-control" name="min_price" placeholder="minimal price" type="number" min="0">
+            <label>&nbsp;</label>
+            <input class="textbox" autocomplete="off" autofocus class="form-control" name="max_price" placeholder="maximum price" type="number" min="0">
+            <label>&nbsp;</label>
+
+
+        </div>
+        <div class="form-group">
+            <label>Created Items Options :</label>
+            <label>Ranked :</label>
+            <input class=" checkbox" type="checkbox" class="form-check-input" id="ranked" name="ranked">
+            <label>Star Crumb :</label>
+            <input class="textbox" autocomplete="off" autofocus class="form-control" name="starcrumb" placeholder="amount" type="number" min="0">
+            <label>Element :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input list="elements" name="element" /></label>
+                <datalist id="elements">
+                <option value=" ">
+                  <option value="Ice">
+                  <option value="Earth">
+                  <option value="Fire">
+                <option value="Wind">
+                </datalist>
+        </div>
+        <br>
+        <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+    <form action="/addNotif" method="post" class="form">
+    <br>
+    {% if message %}
+    <div class="alert alert-success" role="alert">
+        <span>{{ message }}</span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+{% endif %}
+    {% if queryRequest %}
+    <form>
+    <table class="requestTable">
+        <thead>
+            <tr>
+    <ho class="white">Your Request:</ho>
+    <th>&nbsp;&nbsp;item(s) Name or ID: <ho class="white">&nbsp;{{queryRequest['item_id']}}</ho></th>
+    <input type="hidden" name="item_id" value="{{queryRequest['item_id']}}">
+
+    <th>refine: <ho class="white">&nbsp;{{queryRequest['refine']}}</ho></th>
+    <input type="hidden" name="refine" value="{{queryRequest['refine']}}">
+
+    <th>exclude gears with cards: <ho class="white">&nbsp;{{queryRequest['excludeSlotted']}}</ho></th>
+    <input type="hidden" name="excludeslotted" value="{{queryRequest['excludeSlotted']}}">
+
+    <th>Min price: <ho class="white">&nbsp;{{queryRequest['min_price']}}</ho></th>
+    <input type="hidden" name="min_price" value="{{queryRequest['min_price']}}">
+
+    <th>Max price: <ho class="white">&nbsp;{{queryRequest['max_price']}}</ho></th>
+    <input type="hidden" name="max_price" value="{{queryRequest['max_price']}}">
+
+    <th>Ranked : <ho class="white">&nbsp;{{queryRequest['ranked']}}</ho></th>
+    <input type="hidden" name="ranked" value="{{queryRequest['ranked']}}">
+
+    <th>Star Crumbs: <ho class="white">&nbsp;{{queryRequest['star_crumb']}}</ho></th>
+    <input type="hidden" name="star_crumb" value="{{queryRequest['star_crumb']}}">
+
+    <th>Element: <ho class="white">&nbsp;{{queryRequest['element']}}</ho></th>
+    <input type="hidden" name="element" value="{{queryRequest['element']}}">
+
+    <th><button class="btn2 btn-primary" type="submit"><img class="button" src="../static/notif.png"></button></th>
+            </tr>
+        </thead>
+    </table>
+    
+        
+    </form>
+    <br>
+    {% endif %}
+    {% set currentLoop = 0 %}
+    {%for item in display%}
+        <table class="table-hover table-sm tablecustom">
+            <thead>
+                <tr>
+                  <th><img src="{{item['icon']}}"/>
+                    {%if item['raw_data']['ranked'] != False %}
+                    <img class="mini" src="../static/star.png"/>
+                   {%endif %}
+                   {%if item['raw_data']['refine'] != -1 %}
+                   + {{item['raw_data']['refine']}}
+                  {%endif %}
+                   {%if item['raw_data']['star_crumbs'] == 1 %}
+                    Strong
+                   {% endif %}
+                   {%if item['raw_data']['star_crumbs'] == 2 %}
+                   Very Strong
+                  {% endif %}
+                  {%if item['raw_data']['star_crumbs'] == 3 %}
+                  Very Very Strong
+                 {% endif %}
+                    {%if item['raw_data']['element'] != -1 %}
+                    {%if item['raw_data']['element'] == 'Fire' %}
+                    <ho class="red">
+                    {%endif %}
+                    {%if item['raw_data']['element'] == 'Ice' %}
+                    <ho class="blue">
+                    {%endif %}
+                    {%if item['raw_data']['element'] == 'Earth' %}
+                    <ho class="brown">
+                    {%endif %}
+                    {%if item['raw_data']['element'] == 'Wind' %}
+                    <ho class="green">
+                    {%endif %}
+                    {{item['raw_data']['element']}}
+                    {{item['data']['name']}}
+                </th>
+                    </ho>
+                    {% else %}
+                    {{item['data']['name']}} 
+                    {% if 'slots' in item['data']%}
+                    [{{item['data']['slots']}}]
+                    {% endif %}
+                    </th>
+                    {% endif %}
+                  <th class="card_display">{% if item['insertedcard'] == True %}
+                    {% for card in item['cards'] %}
+                    <img src="{{cardicon}}"/>
+                    {{card['name']}}
+                    {% endfor %}
+                    {% endif %}</th>
+                  <th></th>
+                  <th>ID: {{item['data']['item_id']}}</th>
+                  
+                </tr>
+            </thead>
+        <tbody>
+            <tr>
+                <td>owner</td>
+                <td>price</td>
+                <td></td>
+                <td>location</td>
+            </tr>
+        {% for sale in item['sales'] %}
+        <tr>
+            <td class="white">{{sale['owner']}}
+                {% if sale['ranked'] == True %}
+                <ho class="aqua">creator: {{sale['name']}} </ho>
+                {% endif %}
+            </td>
+            <td class="white"> {{sale['price']}}
+            </td>
+            <td class="white"></td>
+            <td class="white">{{sale['map']}}
+                {{sale['x']}},{{sale['y']}}
+            </td>
+        </tr>
+        {% endfor %}
+</tbody>
+</table>
+{% endfor %}
+{% endblock %}
+

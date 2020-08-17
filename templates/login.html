@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+{% block style %}
+.form {
+     border: 1px solid #FFF;
+     padding: 12px 20px;
+     display: inline-block;
+}
+.btn {
+    background: green;
+    border: none;
+}
+
+.btn:hover{
+    background: black;
+}
+
+.fgt {
+    color: white;
+}
+
+.fgt:hover {
+    text-decoration: none;
+}
+
+main {
+    text-align: center;
+}
+
+{% endblock %}
+{% block main %}
+{% if error %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <span>{{ error }}</span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+{% endif %}
+    <br>
+    <form action="/login" method="post" class="form">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="password" placeholder="Password" type="password">
+        </div>
+        <br>
+        <button class="btn btn-primary" type="submit" name="submit_button" value="login">Log In</button>
+        <button class="btn btn-primary" type="submit" name="submit_button" value="register">Register</button>
+    </form>
+    
+{% endblock %}

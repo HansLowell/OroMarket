@@ -1,0 +1,17 @@
+version: '3.3'
+
+services:
+    flask:
+        build: .
+        container_name: flaskapp
+        image: flaskapp
+        links:
+            - mongo_db
+        ports:
+            - 8888:5000
+        tty: true
+    mongo_db:
+        container_name: origin_db
+        image: mongo:4.2
+        volumes:
+            - ./data/mongo_db/db
